@@ -13,12 +13,13 @@ class Diver {
       this.x = x;
       this.y = y;
     }
-    // set src of the image (img.src= "")
+    img.src= "img/diver-2-1.png"
   }
 
   // method to draw the diver 
   draw() {
-    // if not loaded or of it's loaded 
+    if (!this.img) return;
+     ctx.drawImage(this.img, this.x, this.y, this.w, this.h)
   }
   
   // method to go up 

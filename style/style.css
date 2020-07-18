@@ -1,3 +1,77 @@
+/*
+  font-family: 'Luckiest Guy', cursive;
+  font-family: 'Noto Sans JP', sans-serif;
+*/
+
 body {
-  margin:0;
+  margin:0 20%;
+  background-image: url("../img/background-index.jpeg");
+  font-size:16px;
+  color:white;
 }
+
+h1 {
+  font-size:4em;
+  margin-top:15%;
+  margin-bottom: 10%;
+  font-family: 'Luckiest Guy', cursive;
+  text-align: center;
+}
+
+#explain {
+  display:flex;
+}
+
+#explain img {
+  width:40%;
+  height:100%;
+}
+
+#text {
+  margin: 0 7%;
+  text-align: center;
+}
+
+#text h2 {
+  font-family: 'Luckiest Guy', cursive;
+  letter-spacing: 1px;
+  font-size: 2em;
+}
+
+#text p {
+  font-family: 'Noto Sans JP', sans-serif;
+  width: 72%;
+  margin: 10px auto;
+}
+
+span {
+  font-weight: 700;
+}
+
+#command h3 {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 1.5em;
+  padding-top: 20px;
+  text-decoration: underline;
+}
+
+#button {
+  background-color: white;
+  width:200px; 
+  height:50px;
+  margin: 9% auto;
+  text-align: center;
+}
+
+#button p {
+  padding-top: 12px;
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 2em;
+  letter-spacing: 2px;
+  color:#DC143C;
+}
+
+#button:hover {
+  background-color: #FFA500;
+}
+
