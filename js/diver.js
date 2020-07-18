@@ -7,8 +7,11 @@ class Diver {
     // determine what's happening when the image is loaded 
     diverImg.onload = () => {
       this.img = img;
-      // set width, height, x and y
-
+      const ratio = img.naturalWidth/img.naturalHeight;
+      this.w = 50; // A VERIFIER PLUS TARD
+      this.h = this.w/ratio;
+      this.x = x;
+      this.y = y;
     }
     // set src of the image (img.src= "")
   }
@@ -21,7 +24,9 @@ class Diver {
   // method to go up 
   moveUp() {
     // add x 
-    // hover on the leg 
-    // bubles in the sea 
+  }
+
+  animation() {
+    // create bubbles and leg mouvment 
   }
 }
