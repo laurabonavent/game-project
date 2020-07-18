@@ -1,51 +1,134 @@
-const ctx = document.querySelector('canvas').getContext('2d');
-const W = ctx.canvas.width;
-const H = ctx.canvas.height;
+var ctx = document.querySelector('canvas').getContext('2d');
+var W = ctx.canvas.width;
+var H = ctx.canvas.height;
 
-let background;
 let diver;
 let waste = [];
 let animal = [];
 
 // draw the infinite background 
-function Background() {
-  this.img = new Image();
-  this.img.src = './img/background-game.jpg';
-  this.scale = 1.05;
-  this.y = 0;
-  this.dx = 0.5;
-  this.imgW = this.img.width;
-  this.imgH = this.img.height;
-  this.x = 0;
-  this.clearX = 0;
-  this.clearY = 0;
-  that = this;
-  this.img.onload = function() {
-    that.imgW = that.img.width * that.scale;
-    that.imgH = that.img.height * that.scale;
-    if (that.imgW > W) { that.x = W - that.imgW; }
-    if (that.imgW > W) { that.clearX = that.imgW; } else { that.clearX = W; }
-    if (that.imgH > H) { that.clearY = that.imgH; } else { that.clearY = H; }
-  };
+function background() {
+  const img = new Image();
+  img.src = './img/background-game.jpg';
+  img.width = W;
+  img.height = H;
+  var speed = 25; // plus elle est basse, plus c'est rapide
+  var scale = 1.05;
+  var y = -4.5; // décalage vertical
+
+  // Programme principal
+
+  var dx = 0.75;
+  var imgW;
+  var imgH;
+  var x = 0;
+  var clearX;
+  var clearY;
+  var ctx;
+
+  img.onload = function() {
+      imgW = img.width * scale;
+      imgH = img.height * scale;
+      
+      if (imgW > W) {
+          x = W - imgW;
+      }
+      if (imgW > W) {
+          clearX = imgW;
+      } else {
+          clearX = W;
+      }
+      if (imgH > H) {
+          clearY = imgH;
+      } else {
+          clearY = H;
+      }
+      
+      // récupérer le contexte du canvas
+      ctx = document.getElementById('canvas').getContext('2d');
   
-  this.draw = function() {
-    if (that.imgW <= W) {
-      if (that.x > W) { that.x = -that.imgW + that.x; }
-      if (that.x > 0) { ctx.drawImage(that.img, -that.imgW + that.x, that.y, that.imgW, that.imgH); }
-      if (that.x - that.imgW > 0) { ctx.drawImage(that.img, -that.imgW * 2 + that.x, that.y, that.imgW, that.imgH); }
-    } else {
-      if (that.x > (W)) { that.x = W - that.imgW; }
-      if (that.x > (W - that.imgW)) { ctx.drawImage(that.img, that.x - that.imgW + 1, that.y, that.imgW, that.imgH); }
-    }
-    ctx.drawImage(that.img, that.x, that.y, that.imgW, that.imgH);
-    that.x += that.dx;
-    
-  };
-}
+      // définir le taux de rafraichissement
+      return setInterval(draw, speed);
+  }
+
+  function draw() {
+      ctx.clearRect(0, 0, clearX, clearY); // clear the canvas
+      
+      // si image est <= taille du canvas
+      if (imgW <= W) {
+          // réinitialise, repart du début
+          if (x > W) {
+              x = -imgW + x;
+          }
+          // dessine image1 supplémentaire
+          if (x > 0) {
+              ctx.drawImage(img, -imgW + x, y, imgW, imgH);
+          }
+          // dessine image2 supplémentaire
+          if (x - imgW > 0) {
+              ctx.drawImage(img, -imgW * 2 + x, y, imgW, imgH);
+          }
+      }
+
+      // image est > taille du canvas
+      else {
+          // réinitialise, repeart du début
+          if (x > (W)) {
+              x = W - imgW;
+          }
+          // dessine image supplémentaire
+          if (x > (W-imgW)) {
+              ctx.drawImage(img, x - imgW + 1, y, imgW, imgH);
+          }
+      }
+      // dessine image
+      ctx.drawImage(img, x, y,imgW, imgH);
+      // quantité à déplacer
+      x += dx;
+  }
+  }
+
+
+    function draw() {
+        ctx.clearRect(0, 0, clearX, clearY); // clear the canvas
+        
+        // si image est <= taille du canvas
+        if (imgW <= W) {
+            // réinitialise, repart du début
+            if (x > W) {
+                x = -imgW + x;
+            }
+            // dessine image1 supplémentaire
+            if (x > 0) {
+                ctx.drawImage(img, -imgW + x, y, imgW, imgH);
+            }
+            // dessine image2 supplémentaire
+            if (x - imgW > 0) {
+                ctx.drawImage(img, -imgW * 2 + x, y, imgW, imgH);
+            }
+        }
+
+        // image est > taille du canvas
+        else {
+            // réinitialise, repeart du début
+            if (x > (W)) {
+                x = W - imgW;
+            }
+            // dessine image supplémentaire
+            if (x > (W-imgW)) {
+                ctx.drawImage(img, x - imgW + 1, y, imgW, imgH);
+            }
+        }
+        // dessine image
+        ctx.drawImage(img, x, y,imgW, imgH);
+        // quantité à déplacer
+        x += dx;
+  }
+
 
 function startGame() {
   ctx.clearRect(0,0,W,H);
-  background = new Background();
+  background();
   diver = new Diver(0, H/2);
   
 }
