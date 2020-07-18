@@ -5,15 +5,15 @@ class Diver {
     // create a new element in the html for the image 
     const img = document.createElement('img')
     // determine what's happening when the image is loaded 
-    diverImg.onload = () => {
+    img.onload = () => {
       this.img = img;
       const ratio = img.naturalWidth/img.naturalHeight;
-      this.w = 50; // A VERIFIER PLUS TARD
+      this.w = 50; 
       this.h = this.w/ratio;
       this.x = x;
       this.y = y;
     }
-    img.src= "img/diver-2-1.png"
+    img.src= "./img/diver-2-1.png"
   }
 
   // method to draw the diver 
@@ -24,10 +24,7 @@ class Diver {
   
   // method to go up 
   moveUp() {
-    // add x 
+    return this.x +=20;
   }
 
-  animation() {
-    // create bubbles and leg mouvment 
-  }
 }

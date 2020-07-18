@@ -4,48 +4,59 @@
 */
 
 body {
-  margin:0 20%;
-  background-image: url("../img/background-index.jpeg");
+  margin:0 17%;
+  background-image: url("../img/background-index.jpg");
+  background-size:cover;
+  background-repeat: no-repeat;
   font-size:16px;
-  color:white;
 }
 
 h1 {
   font-size:4em;
-  margin-top:15%;
-  margin-bottom: 10%;
+  margin-top:10%;
+  margin-bottom: 5%;
   font-family: 'Luckiest Guy', cursive;
   text-align: center;
+  color:white;
 }
 
 #explain {
   display:flex;
+  align-items:center;
 }
 
 #explain img {
-  width:40%;
+  width:45%;
   height:100%;
+  -webkit-filter: drop-shadow(5px 5px 5px #222 );
+  filter: drop-shadow(5px 5px 5px #222);
 }
 
 #text {
   margin: 0 7%;
+  padding: 20px;
   text-align: center;
+  background-color: white;
+  border-radius: 10px;
 }
 
 #text h2 {
   font-family: 'Luckiest Guy', cursive;
   letter-spacing: 1px;
   font-size: 2em;
+  color:#027c8a;
+  margin-top:40px;
 }
 
 #text p {
   font-family: 'Noto Sans JP', sans-serif;
-  width: 72%;
   margin: 10px auto;
+  color:#00a7b3;
 }
 
 span {
   font-weight: 700;
+  color:#027c8a;
 }
 
 #command h3 {
@@ -53,11 +64,11 @@ span {
   font-size: 1.5em;
   padding-top: 20px;
   text-decoration: underline;
+  color:#027c8a;
 }
 
 #button {
-  background-color: white;
-  width:200px; 
+  width:150px; 
   height:50px;
   margin: 9% auto;
   text-align: center;
@@ -72,6 +83,6 @@ span {
 }
 
 #button:hover {
-  background-color: #FFA500;
+  background-color:#027c8a;
 }
 
