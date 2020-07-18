@@ -8,9 +8,12 @@ let animal;
 
 // create a function to draw everything on the page 
 function draw() {
-  // fond 
+  // effacer tout 
+  ctx.clearRect(0,0,W,H);
 
-  
+  // fond 
+  const img = document.createElement('img')
+  img.src="/img/background-game.jpg"
   // diver 
 
 
@@ -20,3 +23,4 @@ function draw() {
   // animals 
 
 }
+draw();
