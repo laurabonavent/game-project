@@ -10,7 +10,7 @@ class Animal {
     img.onload = () => {
       this.img = img;
       this.type = type;
-      this.w = random(0, Infinity) // à modifier
+      this.w = random(0, W) 
       this.h = 50;
       this.x = random(0, H);
       this.y = 0;
