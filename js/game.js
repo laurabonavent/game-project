@@ -9,7 +9,7 @@ let animals = [];
 let frames = 0;
 let raf;
 let gameover;
-let gravity = 0.10;
+let point = 0; 
 
 // au loading de la page 
 window.onload = () => {
@@ -30,8 +30,9 @@ function startGame() {
 // draw elements on the page 
 function draw() {
   //draw diver
+  diver.moveDown();
   diver.draw();
-
+  
   //draw wastes et fait bouger vers la gauche
   if (frames % 200 === 0) {
     const type = randomWaste();
@@ -61,8 +62,25 @@ function draw() {
     animals[i].x += -5; // ça fait défiler à gauche 
   }
 
-  //waste 
-  
+  /*// waste 
+  for (waste of wastes) {
+    if (diver.pickUp(waste)) {
+      console.log('picked up');
+      point +=1;
+      console.log(point);
+    }
+  }
+
+  //animals
+  for (animal of animals) {
+    if (diver.hits(animal)) {
+      console.log('crashed');
+      gameover = true;
+    }
+  }*/
+
+
+
 }
 
 

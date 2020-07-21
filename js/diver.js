@@ -4,13 +4,13 @@ class Diver {
     img.onload = () => {
       this.img = img;
       const ratio = img.naturalWidth/img.naturalHeight;
-      this.w = 360; 
+      this.w = 200; 
       this.h = this.w/ratio;
       this.x = x;
       this.y = y;
       this.speedX = 0;
-      this.speedY = 9;
-      this.gravity = 0.0025;
+      this.speedY = 0.0060;
+      this.gravity = 0.0060;
       this.gravitySpeed = 0;
     }
     img.src= "./img/diver-2-1.png"
@@ -25,7 +25,7 @@ class Diver {
   moveUp() {
     /*if (this.y < 0) {this.y = H/2}
     if (this.y > H) {gameover}*/
-    return this.y -= this.speedY;
+    return this.y -= 50;
   }
 
   moveDown() {

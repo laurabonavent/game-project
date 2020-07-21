@@ -10,7 +10,6 @@ function randomWaste (wastetype) {
 
   return wasteType[randNum];
 }
-console.log(randomWaste());
 
 // class Waste 
 class Waste {
@@ -22,9 +21,9 @@ class Waste {
       this.type = type;
       this.w = 90;
       this.h = this.w/ratio;
-      this.x = W-5;
+      this.x = W-8;
       this.y = randomPosition(30, 870);
-      this.speed = 1;
+      this.speed = 2;
     }
     img.src =`img/${type}.png`
   } 
@@ -46,5 +45,5 @@ class Waste {
   bottom() {
     return this.y + this.h;
   }
-  
+
 }

@@ -10,7 +10,6 @@ function randomAnimal (animaltype) {
 
   return animalType[randNum];
 }
-console.log(randomAnimal());
 
 // class Animal 
 class Animal {
