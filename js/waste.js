@@ -6,7 +6,9 @@ function randomPosition(from, to) {
 // to random waste type
 const wasteType = ["bag", "bottle", "can"]
 function randomWaste (wastetype) {
-  return Math.floor(Math.random()* Math.floor(wasteType.length));
+  const randNum = Math.floor(Math.random()* Math.floor(wasteType.length)); // 2
+
+  return wasteType[randNum];
 }
 console.log(randomWaste());
 
@@ -16,29 +18,21 @@ class Waste {
     const img = document.createElement('img')
     img.onload = () => {
       this.img = img;
+      const ratio = img.naturalWidth/img.naturalHeight;
       this.type = type;
-      this.w = randomPosition(0, W)
-      this.h = 50;
-      this.x = randomPosition(0, H);
-      this.y = 0;
+      this.w = 90;
+      this.h = this.w/ratio;
+      this.x = randomPosition(300, W);
+      this.y = randomPosition(0, H-20);
     }
-    //img.src =`./img/${this.type}.jpeg`
+    img.src =`img/${type}.png`
   } 
 
   draw() {
-    switch (this.type) {
-      case "0" : 
-        img.src ="./img/bag.png";
-        ctx.drawImage(this.img, this.x, this.y, this.w, this.h);
-        break;
-      case "1" : 
-        this.img.src = "./img/bottle.png";
-        ctx.drawImage(this.img, this.x, this.y, this.w, this.h);
-        break;
-      case "2" : 
-        this.img.src = "./img/can.png";
-        ctx.drawImage(this.img, this.x, this.y, this.w, this.h);
-        break;
-    }
+    if (!this.img) return;
+
+    ctx.drawImage(this.img, this.x, this.y, this.w, this.h);
+
+    
   }
 }

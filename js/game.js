@@ -34,14 +34,14 @@ function draw() {
 
   //draw wastes
   if (frames % 150 === 0) {
-    var waste = new Waste(randomWaste);
+    const type = randomWaste();
+    var waste = new Waste(type);
     wastes.push(waste);
   }
   wastes.forEach((el)=> {
-    el.w += 5;
     el.draw();
   })
-  
+
   // draw animals
 }
 
@@ -64,7 +64,7 @@ function background() {
   img.src = './img/background-game.jpg';
   img.width = W;
   img.height = H;
-  var speed = 20; // plus elle est basse, plus c'est rapide
+  var speed = 1; // plus elle est basse, plus c'est rapide
   var y = 0;
 
   var dx = 0.75;

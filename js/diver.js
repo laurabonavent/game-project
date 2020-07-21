@@ -4,7 +4,7 @@ class Diver {
     img.onload = () => {
       this.img = img;
       const ratio = img.naturalWidth/img.naturalHeight;
-      this.w = 45; 
+      this.w = 270; 
       this.h = this.w/ratio;
       this.x = x;
       this.y = y;
