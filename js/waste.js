@@ -22,17 +22,29 @@ class Waste {
       this.type = type;
       this.w = 90;
       this.h = this.w/ratio;
-      this.x = randomPosition(300, W);
-      this.y = randomPosition(0, H-20);
+      this.x = W-5;
+      this.y = randomPosition(30, 870);
+      this.speed = 1;
     }
     img.src =`img/${type}.png`
   } 
 
   draw() {
     if (!this.img) return;
-
     ctx.drawImage(this.img, this.x, this.y, this.w, this.h);
-
-    
   }
+
+  left() {
+    return this.x;
+  }
+  right() {
+    return this.x + this.w;
+  }
+  top() {
+    return this.y;
+  }
+  bottom() {
+    return this.y + this.h;
+  }
+  
 }

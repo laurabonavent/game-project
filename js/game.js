@@ -32,8 +32,8 @@ function draw() {
   //draw diver
   diver.draw();
 
-  //draw wastes
-  if (frames % 150 === 0) {
+  //draw wastes et fait bouger vers la gauche
+  if (frames % 200 === 0) {
     const type = randomWaste();
     var waste = new Waste(type);
     wastes.push(waste);
@@ -41,9 +41,33 @@ function draw() {
   wastes.forEach((el)=> {
     el.draw();
   })
+  for (i = 0; i < wastes.length; i++) {
+    wastes[i].x += -5; // ç afait défiler à gauche 
+  }
 
   // draw animals
+  if (frames % 120 === 0) {
+    const type = randomAnimal();
+    var animal = new Animal(type);
+    animals.push(animal);
+  }
+  animals.forEach((el)=> {
+    if ((wastes.y === animals.y) && (wastes.x === animals.x)) {
+      !el.draw();
+    } else {
+    el.draw();}
+  })
+  for (i = 0; i < animals.length; i++) {
+    animals[i].x += -5; // ça fait défiler à gauche 
+  }
+
+  //waste 
+  
 }
+
+
+
+
 
 // animloop
 function animLoop() {
@@ -133,4 +157,3 @@ document.onkeydown = (e) => {
 
 
 // game over 
-
