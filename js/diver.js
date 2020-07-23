@@ -9,8 +9,8 @@ class Diver {
       this.x = x;
       this.y = y;
       this.speedX = 0;
-      this.speedY = 0.0060;
-      this.gravity = 0.0060;
+      this.speedY = 0.001;
+      this.gravity = 0.0010;
       this.gravitySpeed = 0;
     }
     img.src= "./img/diver-2-1.png"
@@ -23,14 +23,14 @@ class Diver {
   
   // method to go up 
   moveUp() {
-    /*if (this.y < 0) {this.y = H/2}
-    if (this.y > H) {gameover}*/
-    return this.y -= 50;
+    if (this.y < 0) {gameover = true}
+    return this.y -= 30;
   }
 
   moveDown() {
     this.gravitySpeed += this.gravity;
     this.y += this.speedY + this.gravitySpeed; 
+    if (this.y > H) {gameover = true}
   }
 
   left() {
@@ -53,7 +53,6 @@ class Diver {
       && this.left() < animal.right()) 
       { 
         return gameover = true;
-        console.log("you hit an animal!");
       }
   }
   
@@ -63,8 +62,10 @@ class Diver {
       && this.right() > waste.left() 
       && this.left() < waste.right()) 
       { 
+        var wasteIndex = wastes.indexOf(waste);
+        wastes.splice(wasteIndex, 1)
         return point++;
-        console.log("you pick up a waste");
+
       }
   }  
 }

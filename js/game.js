@@ -9,7 +9,7 @@ let animals = [];
 let frames = 0;
 let raf;
 let gameover;
-let point = 0; 
+let point; 
 
 // au loading de la page 
 window.onload = () => {
@@ -22,70 +22,14 @@ function startGame() {
   if (raf) {
     cancelAnimationFrame(raf);
   }
+  gameover = false;
+  point = 0;
+  
+
   background();
-  diver = new Diver(10, H/2);
+  diver = new Diver(30, H/2);
   requestAnimationFrame(animLoop);
 }
-
-// draw elements on the page 
-function draw() {
-  //draw diver
-  diver.moveDown();
-  diver.draw();
-  
-  //draw wastes et fait bouger vers la gauche
-  if (frames % 200 === 0) {
-    const type = randomWaste();
-    var waste = new Waste(type);
-    wastes.push(waste);
-  }
-  wastes.forEach((el)=> {
-    el.draw();
-  })
-  for (i = 0; i < wastes.length; i++) {
-    wastes[i].x += -5; // ç afait défiler à gauche 
-  }
-
-  // draw animals
-  if (frames % 120 === 0) {
-    const type = randomAnimal();
-    var animal = new Animal(type);
-    animals.push(animal);
-  }
-  animals.forEach((el)=> {
-    if ((wastes.y === animals.y) && (wastes.x === animals.x)) {
-      !el.draw();
-    } else {
-    el.draw();}
-  })
-  for (i = 0; i < animals.length; i++) {
-    animals[i].x += -5; // ça fait défiler à gauche 
-  }
-
-  /*// waste 
-  for (waste of wastes) {
-    if (diver.pickUp(waste)) {
-      console.log('picked up');
-      point +=1;
-      console.log(point);
-    }
-  }
-
-  //animals
-  for (animal of animals) {
-    if (diver.hits(animal)) {
-      console.log('crashed');
-      gameover = true;
-    }
-  }*/
-
-
-
-}
-
-
-
-
 
 // animloop
 function animLoop() {
@@ -97,19 +41,77 @@ function animLoop() {
   } else {
     cancelAnimationFrame(raf);
   }
+}
 
+// draw elements on the page 
+function draw() {
+  //draw diver
+  diver.moveDown();
+  diver.draw();
+
+  //draw wastes et fait bouger vers la gauche
+  if (frames % 200 === 0) {
+    const type = randomWaste();
+    var waste = new Waste(type);
+    wastes.push(waste);
+  }
+  wastes.forEach((el)=> {
+    el.draw();
+  })
+  for (i = 0; i < wastes.length; i++) {
+    wastes[i].x += -7; // ça fait défiler à gauche 
+  }
+
+  // draw animals
+  if (frames % 250 === 0) {
+    const type = randomAnimal();
+    var animal = new Animal(type);
+    animals.push(animal);
+  }
+  animals.forEach((el)=> {
+    el.draw();}
+  )
+  for (i = 0; i < animals.length; i++) {
+    animals[i].x += -5; // ça fait défiler à gauche 
+  }
+
+  // waste 
+  for (waste of wastes) {
+    if (diver.pickUp(waste)) {
+      console.log('picked up');
+      point +=1 ;
+      console.log(point);
+    }
+  }
+
+  //animals
+  for (animal of animals) {
+    if (diver.hits(animal)) {
+      console.log('crashed');
+      gameover = true;
+    }
+  }
+
+  // write points 
+  ctx.fillStyle = "white";
+  ctx.fillRect(W-380, 7, 360, 50)
+  
+  ctx.font = "bold 35px Arial";
+  ctx.textAlign = "right";
+  ctx.fillStyle = "#027c8a";
+  ctx.fillText(`${point} wastes picked up`, W-40, 42)
 }
 
 // background
 function background() {
   const img = new Image();
-  img.src = './img/background-game.jpg';
+  img.src = './img/background-game.png';
   img.width = W;
   img.height = H;
   var speed = 1; // plus elle est basse, plus c'est rapide
   var y = 0;
 
-  var dx = 0.75;
+  var dx = 3;
   var imgW;
   var imgH;
   var x = 0;
@@ -133,7 +135,9 @@ function background() {
       } else {
           clearY = H;
       }
-      return setInterval(draw, speed);
+    
+      return setInterval(draw, 1000/24); 
+      
   }
 
   function draw() {
@@ -162,16 +166,20 @@ function background() {
   }
 }
 
-
-
+/*function gameOver () {
+  if (gameover = true) {
+  ctx.fillStyle = "white";
+  ctx.fillRect(W/2, H/2, 360, 50)
+  
+  ctx.font = "bold 35px Arial";
+  ctx.textAlign = "right";
+  ctx.fillStyle = "#027c8a";
+  ctx.fillText(`${point} wastes picked up`, W-40, 42)
+  }
+}*/
 
 // Pour jouer 
 document.onkeydown = (e) => {
   if (e.keyCode === 38) {diver.moveUp()};
-  if (e.keyCode === 40) {diver.moveDown()};
+  //if (e.keyCode === 40) {diver.moveDown()};
 }
-
-// compter les points 
-
-
-// game over 
