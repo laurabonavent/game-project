@@ -19,11 +19,10 @@ class Waste {
       this.img = img;
       const ratio = img.naturalWidth/img.naturalHeight;
       this.type = type;
-      this.w = 90;
+      this.w = 110;
       this.h = this.w/ratio;
-      this.x = W-8;
-      this.y = randomPosition(30, 870);
-      //this.speed = 10;
+      this.x = W;
+      this.y = randomPosition(100, 700);
     }
     img.src =`img/${type}.png`
   } 
@@ -44,6 +43,13 @@ class Waste {
   }
   bottom() {
     return this.y + this.h;
+  }
+
+  delete() {
+  if (this.x < 0) {
+    var wasteIndex = wastes.indexOf(waste);
+    wastes.splice(wasteIndex, 1)
+  }
   }
 
 }

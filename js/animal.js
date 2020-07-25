@@ -19,11 +19,10 @@ class Animal {
       this.img = img;
       const ratio = img.naturalWidth/img.naturalHeight;
       this.type = type;
-      this.w = 110;
+      this.w = 90;
       this.h = this.w/ratio;
-      this.x = W-5;
-      this.y = randomPosition(30, 870);
-      //this.speed = 1;
+      this.x = W;
+      this.y = randomPosition(30, 800);
     }
     img.src =`img/${type}.png`
   } 
