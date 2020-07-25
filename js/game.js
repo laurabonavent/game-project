@@ -10,6 +10,12 @@ var ctx = document.querySelector('canvas').getContext('2d');
 var W = ctx.canvas.width;
 var H = ctx.canvas.height;
 
+var $homepage = document.querySelector('#homepage');
+var $game = document.querySelector('#game');
+var $gameoverBoard = document.querySelector('#gameover-board');
+var $winBoard = document.querySelector('#win-board');
+var $playButton = document.querySelector('.button')
+
 let diver;
 let wastes = []
 let animals = [];
@@ -31,7 +37,18 @@ let pushforce = 0;
 ##     ## ##     ## #### ##    ## */
 // au loading de la page 
 window.onload = () => {
-  ctx.clearRect(0,0,W,H);
+  $homepage.style.display = "block";
+  $game.style.display = "none";
+  $gameoverBoard.style.display ="none";
+  $winBoard.style.display = "none";
+}
+
+$playButton.onclick = () => {
+  //ctx.clearRect(0,0,W,H);
+  $homepage.style.display = "none";
+  $game.style.display = "block";
+  $gameoverBoard.style.display ="none";
+  $winBoard.style.display = "none";
   startGame();
 }
 
@@ -180,7 +197,8 @@ function remove () {
     }})
 }
 
-/* ######      ###    ##     ## ########     #######  ##     ## ######## ########  
+/* 
+######      ###    ##     ## ########     #######  ##     ## ######## ########  
 ##    ##    ## ##   ###   ### ##          ##     ## ##     ## ##       ##     ## 
 ##         ##   ##  #### #### ##          ##     ## ##     ## ##       ##     ## 
 ##   #### ##     ## ## ### ## ######      ##     ## ##     ## ######   ########  
@@ -193,6 +211,20 @@ function gameOver () {
   } else {
     cancelAnimationFrame(raf);
     ctx.clearRect(0,0, W,H);
+    if (point > 0) {
+      $winBoard.style.display = "block";
+      ctx.font = "bold 45px Arial";
+      ctx.textAlign = "center";
+      ctx.fillStyle = "#DC143C";
+      ctx.fillText(`${point} wastes `, 930, 530) 
+
+    } else {
+      $gameoverBoard.style.display = "block";
+      ctx.font = "bold 45px Arial";
+      ctx.textAlign = "center";
+      ctx.fillStyle = "#DC143C";
+      ctx.fillText(`${point} wastes `, 930, 530) }
+
   }
 }
 

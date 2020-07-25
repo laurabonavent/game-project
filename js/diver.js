@@ -22,19 +22,6 @@ class Diver {
     if (!this.img) return;
     ctx.drawImage(this.img, this.x, this.y, this.w, this.h)
   }
-  
-  // method to go up 
-  /*moveUp() {
-    if (this.y < 0) {gameover = true}
-    return this.y -= 30 ;
-  }
-
-  moveDown() {
-    //this.gravitySpeed += this.gravity;
-    //this.y += this.speedY + this.gravitySpeed; 
-    
-    //if (this.y > H) {gameover = true}
-  }*/
 
   update() {
     if (this.y > H) {gameover = true}
@@ -49,10 +36,10 @@ class Diver {
     this.y += this.vy;
     this.x += this.vx;
 
-    const rockbottom = H - this.h;
-    if (this.y > rockbottom) {
-    this.y = rockbottom;
-  }
+    //const rockbottom = H - this.h;
+    //if (this.y > rockbottom) {
+    //this.y = rockbottom;
+  //}
 
     this.draw()
   }

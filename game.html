@@ -8,10 +8,61 @@
   <link rel="stylesheet" href="./style/game-style.css">
 </head>
 <body>
+
+  <div id="homepage">
+    <h1>Let's clean the ocean! </h1>
+  <section id="explain">
+    <img src="./img/diver-1.png" alt="diver">
+    <div id="text">
+      <h2>Welcome to the game!</h2>
+      <p>
+        You're <span> Sam the diver</span>, your mission is to pick up trash from the sea and leave the nice animals in peace.
+      </p>
+      <div id="command">
+        <h3>How to play?</h3>
+        <p>
+          <span>Use the up arrow of the keyboard to move. </span> </p>
+        <p>
+          For every piece of garbage you pick up, you win a point. If you hit an animal, it's game over.
+        </p>
+        <div class="button">
+          Play
+        </div>
+      </div>
+    </div>
+  </section>
+  </div>
+
   <div id="game">
     <canvas id="canvas" width="1440" height="900"></canvas>
   </div>
-  
+
+  <div id="gameover-board">
+    <div class="score">
+      <img src="./img/diver-gameover.png" alt="diver-gameover">
+      <div class="result-text">
+        <h2>Game over!</h2>
+        <h4>You picked up</h4>
+        <div class="button">
+          Try again
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="win-board">
+    <div class="score">
+      <img src="./img/diver-win.png" alt="diver-win">
+      <div class="result-text">
+        <h2>Well done!</h2>
+        <h4>Congrats! You picked up</h4>
+        <div class="button">
+          Try again
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script src="js/diver.js"></script>
   <script src="js/waste.js"></script>
   <script src="js/animal.js"></script>
