@@ -1,4 +1,11 @@
-// variables globales 
+/* 
+######   ##        #######  ########     ###    ##       
+##    ##  ##       ##     ## ##     ##   ## ##   ##       
+##        ##       ##     ## ##     ##  ##   ##  ##       
+##   #### ##       ##     ## ########  ##     ## ##       
+##    ##  ##       ##     ## ##     ## ######### ##       
+##    ##  ##       ##     ## ##     ## ##     ## ##       
+ ######   ########  #######  ########  ##     ## ######## */ 
 var ctx = document.querySelector('canvas').getContext('2d');
 var W = ctx.canvas.width;
 var H = ctx.canvas.height;
@@ -14,6 +21,14 @@ const weightforce =  0.4;
 const MAXSPEED = 6;
 let pushforce = 0;
 
+/*
+##     ##    ###    #### ##    ## 
+###   ###   ## ##    ##  ###   ## 
+#### ####  ##   ##   ##  ####  ## 
+## ### ## ##     ##  ##  ## ## ## 
+##     ## #########  ##  ##  #### 
+##     ## ##     ##  ##  ##   ### 
+##     ## ##     ## #### ##    ## */
 // au loading de la page 
 window.onload = () => {
   ctx.clearRect(0,0,W,H);
@@ -36,15 +51,18 @@ function startGame() {
 function animLoop() {
   frames++;
   draw();
-
-  if (!gameover) {
-    raf = requestAnimationFrame(animLoop);
-  } else {
-    cancelAnimationFrame(raf);
-  }
+  gameOver();
+  remove();
 }
 
-//
+/*
+########     ###     ######  ##    ##  ######   ########   #######  ##     ## ##    ## ########  
+##     ##   ## ##   ##    ## ##   ##  ##    ##  ##     ## ##     ## ##     ## ###   ## ##     ## 
+##     ##  ##   ##  ##       ##  ##   ##        ##     ## ##     ## ##     ## ####  ## ##     ## 
+########  ##     ## ##       #####    ##   #### ########  ##     ## ##     ## ## ## ## ##     ## 
+##     ## ######### ##       ##  ##   ##    ##  ##   ##   ##     ## ##     ## ##  #### ##     ## 
+##     ## ##     ## ##    ## ##   ##  ##    ##  ##    ##  ##     ## ##     ## ##   ### ##     ## 
+########  ##     ##  ######  ##    ##  ######   ##     ##  #######   #######  ##    ## ########   */
 
 const img = new Image()
 img.src = './img/background-game.png'
@@ -64,6 +82,14 @@ const backgroundImage = {
   }
 };
 
+/*
+########  ########     ###    ##      ## 
+##     ## ##     ##   ## ##   ##  ##  ## 
+##     ## ##     ##  ##   ##  ##  ##  ## 
+##     ## ########  ##     ## ##  ##  ## 
+##     ## ##   ##   ######### ##  ##  ## 
+##     ## ##    ##  ##     ## ##  ##  ## 
+########  ##     ## ##     ##  ###  ###   */
 
 // draw elements on the page 
 function draw() {
@@ -129,16 +155,58 @@ function draw() {
   ctx.fillText(`${point} wastes picked up`, W-40, 42)
 }
 
-function gameOver () {
-  if (gameover) {
+/* 
+########  ######## ##     ##  #######  ##     ## ######## 
+##     ## ##       ###   ### ##     ## ##     ## ##       
+##     ## ##       #### #### ##     ## ##     ## ##       
+########  ######   ## ### ## ##     ## ##     ## ######   
+##   ##   ##       ##     ## ##     ##  ##   ##  ##       
+##    ##  ##       ##     ## ##     ##   ## ##   ##       
+##     ## ######## ##     ##  #######     ###    ######## */
 
+function remove () {
+  wastes.forEach((el)=> {
+    if (el.x < 0) {
+      var elIndex = wastes.indexOf(el);
+      wastes.splice(elIndex, 1)
+      console.log("waste remove")
+    }})
+
+  animals.forEach((el)=> {
+    if (el.x < 0) {
+      var elIndex = animals.indexOf(el);
+      animals.splice(elIndex, 1)
+      console.log("animal remove")
+    }})
+}
+
+/* ######      ###    ##     ## ########     #######  ##     ## ######## ########  
+##    ##    ## ##   ###   ### ##          ##     ## ##     ## ##       ##     ## 
+##         ##   ##  #### #### ##          ##     ## ##     ## ##       ##     ## 
+##   #### ##     ## ## ### ## ######      ##     ## ##     ## ######   ########  
+##    ##  ######### ##     ## ##          ##     ##  ##   ##  ##       ##   ##   
+##    ##  ##     ## ##     ## ##          ##     ##   ## ##   ##       ##    ##  
+ ######   ##     ## ##     ## ########     #######     ###    ######## ##     ## */
+function gameOver () {
+  if (!gameover) {
+    raf = requestAnimationFrame(animLoop);
+  } else {
+    cancelAnimationFrame(raf);
+    ctx.clearRect(0,0, W,H);
   }
 }
 
-// Pour jouer 
+/*
+########  ##          ###    ##    ## 
+##     ## ##         ## ##    ##  ##  
+##     ## ##        ##   ##    ####   
+########  ##       ##     ##    ##    
+##        ##       #########    ##    
+##        ##       ##     ##    ##    
+##        ######## ##     ##    ## */   
+ 
 document.onkeydown = function(e) {
   if (e.keyCode === 38) {
-    console.log('haut')
   pushforce = -4;} // start pushing          
 }
 document.onkeyup = function(e) {

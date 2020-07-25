@@ -45,11 +45,4 @@ class Waste {
     return this.y + this.h;
   }
 
-  delete() {
-  if (this.x < 0) {
-    var wasteIndex = wastes.indexOf(waste);
-    wastes.splice(wasteIndex, 1)
-  }
-  }
-
 }

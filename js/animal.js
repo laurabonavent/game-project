@@ -19,7 +19,7 @@ class Animal {
       this.img = img;
       const ratio = img.naturalWidth/img.naturalHeight;
       this.type = type;
-      this.w = 90;
+      this.w = 110;
       this.h = this.w/ratio;
       this.x = W;
       this.y = randomPosition(30, 800);
