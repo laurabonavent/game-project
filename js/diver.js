@@ -8,10 +8,6 @@ class Diver {
       this.h = this.w/ratio;
       this.x = x;
       this.y = y;
-      //this.speedX = 0;
-      //this.speedY = 0.001;
-      //this.gravity = 0.0010;
-      //this.gravitySpeed = 0;
       this.vx = 0;
       this.vy = 0;
     }
@@ -30,16 +26,11 @@ class Diver {
 
     this.vy += accy; 
 
-    if (this.vy > MAXSPEED) this.vy = MAXSPEED; // can't be >MAXSPEED
-    if (this.vy < -MAXSPEED) this.vy = -MAXSPEED; // can't be <-MAXSPEED
+    if (this.vy > MAXSPEED) this.vy = MAXSPEED; 
+    if (this.vy < -MAXSPEED) this.vy = -MAXSPEED; 
 
     this.y += this.vy;
     this.x += this.vx;
-
-    //const rockbottom = H - this.h;
-    //if (this.y > rockbottom) {
-    //this.y = rockbottom;
-  //}
 
     this.draw()
   }

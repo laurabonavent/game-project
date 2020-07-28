@@ -116,6 +116,10 @@ canvas {
   display:flex;
 }
 
+.score h2 {
+  font-size: 3em;
+  padding-top: 20px;
+}
 .score img {
   height: 700px;
   margin-left: 80px;
@@ -135,9 +139,8 @@ canvas {
 h4 {
   font-family: 'Noto Sans JP', sans-serif;
   font-size: 1.5em;
-  padding-bottom: 110px;
-  text-decoration: underline;
-  color:#00a7b3;
+  padding : 30px 0;
+  color:#DC143C;
 }
 
 /*WIN BOARD*/

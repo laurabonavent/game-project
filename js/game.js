@@ -206,6 +206,7 @@ function remove () {
 ##    ##  ##     ## ##     ## ##          ##     ##   ## ##   ##       ##    ##  
  ######   ##     ## ##     ## ########     #######     ###    ######## ##     ## */
 function gameOver () {
+  var $nbWastes = document.querySelector('#nb-wastes');
   if (!gameover) {
     raf = requestAnimationFrame(animLoop);
   } else {
@@ -213,19 +214,22 @@ function gameOver () {
     ctx.clearRect(0,0, W,H);
     if (point > 0) {
       $winBoard.style.display = "block";
-      ctx.font = "bold 45px Arial";
-      ctx.textAlign = "center";
-      ctx.fillStyle = "#DC143C";
-      ctx.fillText(`${point} wastes `, 930, 530) 
+      $nbWastes.innerText = `${point}`
+      //ctx.font = "bold 45px Arial";
+      //ctx.textAlign = "center";
+      //ctx.fillStyle = "#DC143C";
+      //ctx.fillText(`${point} wastes `, 930, 530) 
 
     } else {
       $gameoverBoard.style.display = "block";
-      ctx.font = "bold 45px Arial";
-      ctx.textAlign = "center";
-      ctx.fillStyle = "#DC143C";
-      ctx.fillText(`${point} wastes `, 930, 530) }
+      $nbWastes.innerText = `${point}`
+      //ctx.font = "bold 45px Arial";
+      //ctx.textAlign = "center";
+      //ctx.fillStyle = "#DC143C";
+      //ctx.fillText(`${point} wastes `, 930, 530) }
 
   }
+}
 }
 
 /*
