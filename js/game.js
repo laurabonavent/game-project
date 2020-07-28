@@ -14,13 +14,11 @@ var $homepage = document.querySelector('#homepage');
 var $game = document.querySelector('#game');
 var $gameoverBoard = document.querySelector('#gameover-board');
 var $winBoard = document.querySelector('#win-board');
-var $playButton = document.querySelector('.button')
+var $playButtons = document.querySelectorAll('.button')
 
 let diver;
 let wastes = []
 let animals = [];
-let frames = 0;
-let raf;
 let gameover;
 let point; 
 const weightforce =  0.4;
@@ -43,13 +41,29 @@ window.onload = () => {
   $winBoard.style.display = "none";
 }
 
-$playButton.onclick = () => {
-  //ctx.clearRect(0,0,W,H);
-  $homepage.style.display = "none";
-  $game.style.display = "block";
-  $gameoverBoard.style.display ="none";
-  $winBoard.style.display = "none";
-  startGame();
+$playButtons.forEach(function (el) {
+  el.onclick = () => {
+    startGame();
+    //ctx.clearRect(0,0,W,H);
+    $homepage.style.display = "none";
+    $game.style.display = "block";
+    $gameoverBoard.style.display ="none";
+    $winBoard.style.display = "none";
+  }
+});
+
+let frames = 0;
+let raf;
+// animloop
+function animLoop() {
+  frames++;
+  draw();
+  gameOver();
+  remove();
+
+  if (!gameover) {
+    raf = requestAnimationFrame(animLoop);
+  }
 }
 
 // au démarrage du jeu 
@@ -64,13 +78,8 @@ function startGame() {
   requestAnimationFrame(animLoop);
 }
 
-// animloop
-function animLoop() {
-  frames++;
-  draw();
-  gameOver();
-  remove();
-}
+
+
 
 /*
 ########     ###     ######  ##    ##  ######   ########   #######  ##     ## ##    ## ########  
@@ -130,8 +139,9 @@ function draw() {
   wastes.forEach((el)=> {
     el.draw();
   })
-  for (i = 0; i < wastes.length; i++) {
-    wastes[i].x += -7; // ça fait défiler à gauche 
+ // ça fait défiler à gauche
+  for (i = 0; i < wastes.length; i++) {    
+      wastes[i].x += -8;
   }
   
     // draw animals
@@ -207,29 +217,18 @@ function remove () {
  ######   ##     ## ##     ## ########     #######     ###    ######## ##     ## */
 function gameOver () {
   var $nbWastes = document.querySelector('#nb-wastes');
-  if (!gameover) {
-    raf = requestAnimationFrame(animLoop);
-  } else {
-    cancelAnimationFrame(raf);
+  if (gameover) {
+    //cancelAnimationFrame(raf);
     ctx.clearRect(0,0, W,H);
+    $game.style.display = "none"
     if (point > 0) {
       $winBoard.style.display = "block";
       $nbWastes.innerText = `${point}`
-      //ctx.font = "bold 45px Arial";
-      //ctx.textAlign = "center";
-      //ctx.fillStyle = "#DC143C";
-      //ctx.fillText(`${point} wastes `, 930, 530) 
-
     } else {
       $gameoverBoard.style.display = "block";
       $nbWastes.innerText = `${point}`
-      //ctx.font = "bold 45px Arial";
-      //ctx.textAlign = "center";
-      //ctx.fillStyle = "#DC143C";
-      //ctx.fillText(`${point} wastes `, 930, 530) }
-
+    }
   }
-}
 }
 
 /*

@@ -12,7 +12,7 @@ html, body {
 #homepage {
   display:block; 
   background-image: url("../img/background-index.jpg");
-  background-size:auto;
+  background-size:cover;
   background-repeat: no-repeat;
   font-size:16px;
 }
@@ -143,6 +143,12 @@ h4 {
   color:#DC143C;
 }
 
+#nb-wastes {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 1.2em;
+  padding : 30px 0;
+  color:#DC143C;
+}
 /*WIN BOARD*/
 #win-board {
   display: none;
