@@ -56,7 +56,7 @@ class Diver {
       && this.top() < animal.bottom() 
       && this.right() > animal.left() 
       && this.left() < animal.right()) { 
-        //$lostSound.play();
+        $lostSound.play();
         return gameover = true;
       }
   }
@@ -66,7 +66,7 @@ class Diver {
       && this.top() < waste.bottom() 
       && this.right() > waste.left() 
       && this.left() < waste.right()) { 
-        //$winSound.play();
+        $winSound.play();
         var wasteIndex = wastes.indexOf(waste);
         wastes.splice(wasteIndex, 1)
         return point++;

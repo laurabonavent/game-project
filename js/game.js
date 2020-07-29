@@ -46,8 +46,8 @@ window.onload = () => {
 
 $playButtons.forEach(function (el) {
   el.onclick = () => {
+    ctx.clearRect(0,0,W,H);
     startGame();
-    //ctx.clearRect(0,0,W,H);
     $homepage.style.display = "none";
     $game.style.display = "block";
     $gameoverBoard.style.display ="none";
@@ -78,7 +78,7 @@ function startGame() {
   point = 0;
   
   diver = new Diver(30, 300);
-  //$audio.play();
+  $audio.play();
   requestAnimationFrame(animLoop);
 
 }
@@ -148,11 +148,11 @@ function draw() {
     if (frames > 0 && frames <800) {  
       wastes[i].x += -7; 
     }
-    if (frames > 800 && frames <1600) {  
-      wastes[i].x += -10; 
+    if (frames > 801 && frames <1600) {  
+      wastes[i].x += -9; 
     }
     if (frames > 1600 && frames <2500) {  
-      wastes[i].x += -13; 
+      wastes[i].x += -12; 
     }
     if (frames > 2500) {  
       wastes[i].x += -15; 
@@ -260,11 +260,11 @@ function gameOver () {
  
 document.onkeydown = function(e) {
   if (e.keyCode === 38) {
-  pushforce = -4;
-  } // start pushing          
+    pushforce = -4;
+  } // start pushing         
 }
 document.onkeyup = function(e) {
   if (e.keyCode === 38) {
-  pushforce = 0;
+    pushforce = 0;
   }// stop pushing
 }

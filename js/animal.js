@@ -4,7 +4,7 @@ function randomPosition(from, to) {
 }
 
 // to random waste type
-const animalType = ["turtle", "fish", "sea-horse"]
+const animalType = ["turtle", "fish", "sea-horse", "goldfish", "starfish", "crab"]
 function randomAnimal (animaltype) {
   const randNum = Math.floor(Math.random()* Math.floor(animalType.length)); // 2
 
@@ -19,10 +19,10 @@ class Animal {
       this.img = img;
       const ratio = img.naturalWidth/img.naturalHeight;
       this.type = type;
-      this.w = 110;
+      this.w = 120;
       this.h = this.w/ratio;
       this.x = W;
-      this.y = randomPosition(30, 850);
+      this.y = randomPosition(30, 800);
     }
     img.src =`img/${type}.png`
   } 

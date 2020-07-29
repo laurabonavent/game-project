@@ -22,7 +22,7 @@ class Waste {
       this.w = 110;
       this.h = this.w/ratio;
       this.x = W;
-      this.y = randomPosition(50, 800);
+      this.y = randomPosition(50, 750);
     }
     img.src =`img/${type}.png`
   } 
