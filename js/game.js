@@ -14,7 +14,10 @@ var $homepage = document.querySelector('#homepage');
 var $game = document.querySelector('#game');
 var $gameoverBoard = document.querySelector('#gameover-board');
 var $winBoard = document.querySelector('#win-board');
-var $playButtons = document.querySelectorAll('.button')
+var $playButtons = document.querySelectorAll('.button');
+var $audio = document.querySelector('#audio');
+var $winSound = document.querySelector('#winsound');
+var $lostSound = document.querySelector('#lostsound');
 
 let diver;
 let wastes = []
@@ -74,8 +77,10 @@ function startGame() {
   gameover = false;
   point = 0;
   
-  diver = new Diver(30, H/2);
+  diver = new Diver(30, 300);
+  //$audio.play();
   requestAnimationFrame(animLoop);
+
 }
 
 
@@ -126,7 +131,6 @@ function draw() {
   backgroundImage.draw();
 
   //draw diver
-  //diver.moveDown();
   diver.update();
   diver.draw();
 
@@ -141,11 +145,23 @@ function draw() {
   })
  // ça fait défiler à gauche
   for (i = 0; i < wastes.length; i++) {    
-      wastes[i].x += -8;
+    if (frames > 0 && frames <800) {  
+      wastes[i].x += -7; 
+    }
+    if (frames > 800 && frames <1600) {  
+      wastes[i].x += -10; 
+    }
+    if (frames > 1600 && frames <2500) {  
+      wastes[i].x += -13; 
+    }
+    if (frames > 2500) {  
+      wastes[i].x += -15; 
+    }
+
   }
   
     // draw animals
-  if (frames % 150 === 0) {
+  if (frames % 180 === 0) {
     const type = randomAnimal();
     var animal = new Animal(type);
     animals.push(animal);
@@ -154,7 +170,7 @@ function draw() {
     el.draw();}
   )
   for (i = 0; i < animals.length; i++) {
-    animals[i].x += -5; // ça fait défiler à gauche 
+    animals[i].x += -4; // ça fait défiler à gauche 
   }
 
   // pick up waste 
@@ -193,14 +209,14 @@ function draw() {
 
 function remove () {
   wastes.forEach((el)=> {
-    if (el.x < 0) {
+    if (el.x < -30) {
       var elIndex = wastes.indexOf(el);
       wastes.splice(elIndex, 1)
       console.log("waste remove")
     }})
 
   animals.forEach((el)=> {
-    if (el.x < 0) {
+    if (el.x < -30) {
       var elIndex = animals.indexOf(el);
       animals.splice(elIndex, 1)
       console.log("animal remove")
@@ -219,6 +235,8 @@ function gameOver () {
   var $nbWastes = document.querySelector('#nb-wastes');
   if (gameover) {
     //cancelAnimationFrame(raf);
+    $audio.pause();
+    $audio.currentTime = 0;
     ctx.clearRect(0,0, W,H);
     $game.style.display = "none"
     if (point > 0) {
@@ -242,9 +260,11 @@ function gameOver () {
  
 document.onkeydown = function(e) {
   if (e.keyCode === 38) {
-  pushforce = -4;} // start pushing          
+  pushforce = -4;
+  } // start pushing          
 }
 document.onkeyup = function(e) {
   if (e.keyCode === 38) {
-  pushforce = 0; }// stop pushing
+  pushforce = 0;
+  }// stop pushing
 }

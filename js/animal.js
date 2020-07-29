@@ -22,7 +22,7 @@ class Animal {
       this.w = 110;
       this.h = this.w/ratio;
       this.x = W;
-      this.y = randomPosition(30, 800);
+      this.y = randomPosition(30, 850);
     }
     img.src =`img/${type}.png`
   } 
@@ -35,15 +35,16 @@ class Animal {
   left() {
     return this.x;
   }
+
   right() {
     return this.x + this.w;
   }
+
   top() {
     return this.y;
   }
+
   bottom() {
     return this.y + this.h;
   }
-
-  
-}
+};

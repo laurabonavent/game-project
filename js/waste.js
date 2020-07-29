@@ -22,7 +22,7 @@ class Waste {
       this.w = 110;
       this.h = this.w/ratio;
       this.x = W;
-      this.y = randomPosition(100, 700);
+      this.y = randomPosition(50, 800);
     }
     img.src =`img/${type}.png`
   } 
@@ -35,14 +35,16 @@ class Waste {
   left() {
     return this.x;
   }
+
   right() {
     return this.x + this.w;
   }
+
   top() {
     return this.y;
   }
+
   bottom() {
     return this.y + this.h;
   }
-
-}
+};

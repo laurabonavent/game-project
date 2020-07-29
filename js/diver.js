@@ -20,8 +20,8 @@ class Diver {
   }
 
   update() {
-    if (this.y > H) {gameover = true}
-    if (this.y < 0) {gameover = true}
+    if (this.y > H+30) {gameover = true}
+    if (this.y < -50) {gameover = true}
     const accy = weightforce + pushforce;
 
     this.vy += accy; 
@@ -38,12 +38,15 @@ class Diver {
   left() {
     return this.x;
   }
+
   right() {
     return this.x + this.w;
   }
+
   top() {
     return this.y;
   }
+
   bottom() {
     return this.y + this.h;
   }
@@ -52,8 +55,8 @@ class Diver {
       if (this.bottom() > animal.top() 
       && this.top() < animal.bottom() 
       && this.right() > animal.left() 
-      && this.left() < animal.right()) 
-      { 
+      && this.left() < animal.right()) { 
+        //$lostSound.play();
         return gameover = true;
       }
   }
@@ -62,12 +65,11 @@ class Diver {
     if (this.bottom() > waste.top() 
       && this.top() < waste.bottom() 
       && this.right() > waste.left() 
-      && this.left() < waste.right()) 
-      { 
+      && this.left() < waste.right()) { 
+        //$winSound.play();
         var wasteIndex = wastes.indexOf(waste);
         wastes.splice(wasteIndex, 1)
         return point++;
-
       }
   }  
-}
+};
