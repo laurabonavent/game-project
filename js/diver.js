@@ -1,15 +1,15 @@
 class Diver {
-  constructor(x,y){
+  constructor(){
+    this.x = 30;
+    this.y = 300;
+    this.vx = 0;
+    this.vy = 0; 
     const img = new Image();
     img.onload = () => {
       this.img = img;
       const ratio = img.naturalWidth/img.naturalHeight;
       this.w = 200; 
       this.h = this.w/ratio;
-      this.x = x;
-      this.y = y;
-      this.vx = 0;
-      this.vy = 0;
     }
     img.src= "./img/diver-2-1.png"
   }
@@ -57,6 +57,7 @@ class Diver {
       && this.right() > animal.left() 
       && this.left() < animal.right()) { 
         $lostSound.play();
+        $lostSound.volume = 0.1;
         return gameover = true;
       }
   }
@@ -67,6 +68,7 @@ class Diver {
       && this.right() > waste.left() 
       && this.left() < waste.right()) { 
         $winSound.play();
+        $winSound.volume = 0.1;
         var wasteIndex = wastes.indexOf(waste);
         wastes.splice(wasteIndex, 1)
         return point++;

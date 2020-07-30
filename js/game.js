@@ -61,6 +61,13 @@ let raf;
 function animLoop() {
   frames++;
   draw();
+
+  if (diver.src === "./img/diver-2-1.png"){
+    diver.src = "./img/diver-2-1.png"
+  } else {
+    diver.src === "./img/diver-2-1.png"
+  }
+
   gameOver();
   remove();
 
@@ -76,9 +83,11 @@ function startGame() {
   }
   gameover = false;
   point = 0;
+  wastes = [];
+  animals = [];
   
-  diver = new Diver(30, 300);
-  $audio.play();
+  diver = new Diver();
+  //$audio.play();
   requestAnimationFrame(animLoop);
 
 }
@@ -260,11 +269,14 @@ function gameOver () {
  
 document.onkeydown = function(e) {
   if (e.keyCode === 38) {
+    console.log("img changed")
     pushforce = -4;
+    diver.img.src ="./img/diver-2-2.png"
   } // start pushing         
 }
 document.onkeyup = function(e) {
   if (e.keyCode === 38) {
     pushforce = 0;
+    diver.img.src ="./img/diver-2-1.png"
   }// stop pushing
 }
