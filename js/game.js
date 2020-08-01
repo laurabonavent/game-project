@@ -85,9 +85,11 @@ function startGame() {
   point = 0;
   wastes = [];
   animals = [];
+  frames = 0;
   
   diver = new Diver();
-  //$audio.play();
+  $audio.volume = 0.2;
+  $audio.play();
   requestAnimationFrame(animLoop);
 
 }
@@ -109,7 +111,7 @@ img.src = './img/background-game.png'
 const backgroundImage = {
   img: img,
   x: 0,
-  speed: -1,
+  speed: -2,
 
   move: function() {
       this.x += this.speed;
